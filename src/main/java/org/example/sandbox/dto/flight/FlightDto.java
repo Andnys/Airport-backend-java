@@ -1,7 +1,8 @@
 package org.example.sandbox.dto.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.ZonedDateTime;
-import java.util.Optional;
 
 public class FlightDto {
     private final long id;
@@ -53,14 +54,18 @@ public class FlightDto {
     public String getAirline() {return airline;}
     public String getFlightNumber() {return flightNumber;}
     public char getDomInt() {return domInt;}
-    public ZonedDateTime getScheduleTime() {return scheduleTime;}
+    public String getScheduleTime() {return scheduleTime.toString();}
+    @JsonIgnore
+    public ZonedDateTime getScheduleTimeRaw() {return scheduleTime;}
     public char getArrDep() {return arrDep;}
     public String getAirport() {return airport;}
 
     public String getViaAirport() {return viaAirport;}
-    public Optional<String> getCheckIn() {return Optional.ofNullable(checkIn);}
-    public Optional<String> getGate() {return Optional.ofNullable(gate);}
-    public Optional<Character> getStatusCode() {return Optional.ofNullable(statusCode);}
-    public Optional<ZonedDateTime> getStatusTime() {return Optional.ofNullable(statusTime);}
-    public Optional<String> getBeltNumber() {return Optional.ofNullable(beltNumber);}
+    public String getCheckIn() {return checkIn;}
+    public String getGate() {return gate;}
+    public Character getStatusCode() {return statusCode;}
+    public String getStatusTime() { return scheduleTime != null ? scheduleTime.toString() : null;}
+    @JsonIgnore
+    public ZonedDateTime getStatusTimeRaw() {return statusTime;}
+    public String getBeltNumber() {return beltNumber;}
 }
