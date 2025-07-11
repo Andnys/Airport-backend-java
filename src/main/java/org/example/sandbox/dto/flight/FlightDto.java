@@ -1,7 +1,6 @@
 package org.example.sandbox.dto.flight;
 
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Optional;
 
 public class FlightDto {
@@ -12,11 +11,12 @@ public class FlightDto {
     private final ZonedDateTime scheduleTime;
     private final char arrDep;
     private final String airport;
-    private final Optional<String> checkIn;
-    private final Optional<String> gate;
-    private final Optional<Character> statusCode;
-    private final Optional<ZonedDateTime> statusTime;
-    private final Optional<String> beltNumber;
+    private final String viaAirport;
+    private final String checkIn;
+    private final String gate;
+    private final Character statusCode;
+    private final ZonedDateTime statusTime;
+    private final String beltNumber;
 
     public FlightDto(
         long id,
@@ -26,12 +26,12 @@ public class FlightDto {
         ZonedDateTime scheduleTime,
         char arrDep,
         String airport,
-        Optional<String> viaAirport,
-        Optional<String> checkIn,
-        Optional<String> gate,
-        Optional<Character> statusCode,
-        Optional<ZonedDateTime> statusTime,
-        Optional<String> beltNumber
+        String viaAirport,
+        String checkIn,
+        String gate,
+        Character statusCode,
+        ZonedDateTime statusTime,
+        String beltNumber
     )
     {
         this.id = id;
@@ -41,6 +41,7 @@ public class FlightDto {
         this.scheduleTime = scheduleTime;
         this.arrDep = arrDep;
         this.airport = airport;
+        this.viaAirport = viaAirport;
         this.checkIn = checkIn;
         this.gate = gate;
         this.statusCode = statusCode;
@@ -56,9 +57,10 @@ public class FlightDto {
     public char getArrDep() {return arrDep;}
     public String getAirport() {return airport;}
 
-    public Optional<String> getCheckIn() {return checkIn;}
-    public Optional<String> getGate() {return gate;}
-    public Optional<Character> getStatusCode() {return statusCode;}
-    public Optional<ZonedDateTime> getStatusTime() {return statusTime;}
-    public Optional<String> getBeltNumber() {return beltNumber;}
+    public String getViaAirport() {return viaAirport;}
+    public Optional<String> getCheckIn() {return Optional.ofNullable(checkIn);}
+    public Optional<String> getGate() {return Optional.ofNullable(gate);}
+    public Optional<Character> getStatusCode() {return Optional.ofNullable(statusCode);}
+    public Optional<ZonedDateTime> getStatusTime() {return Optional.ofNullable(statusTime);}
+    public Optional<String> getBeltNumber() {return Optional.ofNullable(beltNumber);}
 }

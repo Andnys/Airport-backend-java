@@ -5,7 +5,6 @@ import org.example.sandbox.dto.airport.AirportDto;
 import org.example.sandbox.dto.flight.FlightDto;
 import org.w3c.dom.Element;
 
-import java.text.ParseException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -24,7 +23,7 @@ public class XmlParser {
         return new AirlineDto(code, name);
     }
 
-    public static FlightDto parseFlight(Element element) throws ParseException {
+    public static FlightDto parseFlight(Element element) {
 
         long id = Long.parseLong(element.getAttribute("uniqueID"));
         String airline = getString(element,"airline");
@@ -33,7 +32,6 @@ public class XmlParser {
         ZonedDateTime scheduleTime = getZonedDateTime(element, "schedule_time");
         char arrDep = getChar(element,"arr_dep");
         String airport = getString(element,"airport");
-        boolean delayed =  Boolean.parseBoolean(element.getElementsByTagName("delayed").item(0).getTextContent());
 
         return new FlightDto(id, airline, flightNumber, domInt, scheduleTime, arrDep, airport, null, null, null, null, null, null);
     }

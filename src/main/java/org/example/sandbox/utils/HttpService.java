@@ -5,17 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.stream.Collectors;
 
 public class HttpService {
-
-    public static <T> T get(String url, Class<T> clazz) {
-        return null;
-    }
-
-    public static String get(String url) throws MalformedURLException, IOException {
+    public static String get(String url) throws IOException {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
