@@ -4,7 +4,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import org.example.sandbox.dto.airport.AirportDto;
-import org.example.sandbox.utils.HttpService;
+import org.example.sandbox.services.HttpService;
 import org.example.sandbox.utils.XmlParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

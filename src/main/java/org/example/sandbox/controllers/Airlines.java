@@ -5,7 +5,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.example.sandbox.dto.airline.AirlineDto;
-import org.example.sandbox.utils.HttpService;
+import org.example.sandbox.services.HttpService;
 import org.example.sandbox.utils.XmlParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
