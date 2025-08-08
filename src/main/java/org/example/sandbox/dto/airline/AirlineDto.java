@@ -1,18 +1,10 @@
 package org.example.sandbox.dto.airline;
 
-public class AirlineDto {
-    private final String code;
-    private final String name;
+import org.example.sandbox.dto.AbstractCodeAndNameDto;
+
+public class AirlineDto extends AbstractCodeAndNameDto {
 
     public AirlineDto(String code, String name) {
-        this.code = code;
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-    public String getName() {
-        return name;
+        super(code, name);
     }
 }
