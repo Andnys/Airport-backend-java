@@ -4,6 +4,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import org.example.sandbox.dto.airport.AirportDto;
+import org.example.sandbox.services.AirportService;
 import org.example.sandbox.services.HttpService;
 import org.example.sandbox.utils.XmlParser;
 import org.w3c.dom.Document;
@@ -25,22 +26,7 @@ public class Airports {
     @Produces("application/json")
     public List<AirportDto> getAll() {
         try {
-            String response = HttpService.get("https://asrv.avinor.no/airportNames/v1.0");
-            List<AirportDto> airports = new ArrayList<>();
-
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            InputSource is = new InputSource(new StringReader(response));
-
-            Document doc = builder.parse(is);
-
-            doc.getDocumentElement().normalize();
-
-            NodeList airportList = doc.getElementsByTagName("airportName");
-            for (int i = 0; i < airportList.getLength(); i++) {
-                airports.add(XmlParser.parseAirport((Element) airportList.item(i)));
-            }
-            return airports;
+            return AirportService.getAll();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
