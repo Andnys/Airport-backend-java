@@ -1,26 +1,28 @@
 package org.example.sandbox.models.flight;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.example.sandbox.models.airline.AirlineModel;
 import org.example.sandbox.models.airport.AirportModel;
+import org.example.sandbox.serializers.ZonedDateTimeSerializer;
 
-import javax.naming.AuthenticationNotSupportedException;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 public class FlightModel {
     private final long id;
-    private AirlineModel airline;
-    private String flightNumber;
-    private FlightAreaEnum area;
-    private ZonedDateTime scheduleTime;
-    private FlightDirectionEnum direction;
-    private AirportModel airport;
-    private AirportModel OrgDest;
-    private List<AirportModel> viaAirports;
-    private String checkIn;
-    private String gate;
-    private FlightStatusModel status;
-    private String beltNumber;
+    private final AirlineModel airline;
+    private final String flightNumber;
+    private final FlightAreaEnum area;
+    @JsonSerialize(using= ZonedDateTimeSerializer.class)
+    private final ZonedDateTime scheduleTime;
+    private final FlightDirectionEnum direction;
+    private final AirportModel airport;
+    private final AirportModel OrgDest;
+    private final List<AirportModel> viaAirports;
+    private final String checkIn;
+    private final String gate;
+    private final FlightStatusModel status;
+    private final String beltNumber;
 
     public FlightModel(
         long id,
@@ -92,9 +94,5 @@ public class FlightModel {
     }
     public String getBeltNumber() {
         return beltNumber;
-    }
-
-    public boolean isDelayed() throws AuthenticationNotSupportedException {
-        throw new AuthenticationNotSupportedException("This is not implemented yet");
     }
 }

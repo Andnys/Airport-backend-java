@@ -32,12 +32,25 @@ public class XmlParser {
         ZonedDateTime scheduleTime = getZonedDateTime(element, "schedule_time");
         char arrDep = getChar(element,"arr_dep");
         String airport = getString(element,"airport");
+        String viaAirport =  getString(element,"via_airport");
+        String checkin = getString(element,"check_in");
+        String gate = getString(element,"gate");
+        String belt = getString(element,"belt");
 
-        return new FlightDto(id, airline, flightNumber, domInt, scheduleTime, arrDep, airport, null, null, null, null, null, null);
+        String statusCode = "";
+        ZonedDateTime statusTime = null;
+        Character statusCodeChar = null;
+        Element statusElement = (Element) element.getElementsByTagName("status").item(0);
+        if(statusElement != null) {
+            statusCode = statusElement.getAttribute("code");
+            statusTime = ZonedDateTime.parse(statusElement.getAttribute("time"));
+            statusCodeChar = !StringUtils.isNullOrEmpty(statusCode) ? statusCode.charAt(0) : null;
+        }
+        return new FlightDto(id, airline, flightNumber, domInt, scheduleTime, arrDep, airport, viaAirport, checkin, gate, statusCodeChar, statusTime, belt);
     }
 
     private static String getString(Element element, String tagName){
-        if (element == null){
+        if (element.getElementsByTagName(tagName).getLength() < 1) {
             return null;
         }
         return element.getElementsByTagName(tagName).item(0).getTextContent();

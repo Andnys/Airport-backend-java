@@ -1,8 +1,8 @@
 package org.example.sandbox.models;
 
 public class CodeAndNameModel {
-    private String code;
-    private String name;
+    private final String code;
+    private final String name;
 
     public CodeAndNameModel(String code, String name) {
         this.code = code;

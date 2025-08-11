@@ -64,7 +64,7 @@ public class FlightDto {
     public String getCheckIn() {return checkIn;}
     public String getGate() {return gate;}
     public Character getStatusCode() {return statusCode;}
-    public String getStatusTime() { return scheduleTime != null ? scheduleTime.toString() : null;}
+    public String getStatusTime() { return statusTime != null ? statusTime.toString() : null;}
     @JsonIgnore
     public ZonedDateTime getStatusTimeRaw() {return statusTime;}
     public String getBeltNumber() {return beltNumber;}
