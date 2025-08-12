@@ -77,13 +77,7 @@ public class FlightService  {
                     .map(a -> FlightFactory.Create(a, airport)).toList();
 
             return new FlightsModel(flightModels, lastUpdate, airport);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
-        } catch (SAXException e) {
+        } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
         }
     }

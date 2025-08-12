@@ -1,5 +1,7 @@
 package org.example.sandbox.utils;
 
+import org.jetbrains.annotations.Contract;
+
 public class StringUtils {
 
     /**
@@ -7,6 +9,7 @@ public class StringUtils {
      * @param string The value to be checked
      * @return false if the string is null or empty.
      */
+    @Contract("null -> true")
     public static boolean isNullOrEmpty(String string) {
         return string == null || string.isEmpty();
     }
@@ -16,6 +19,7 @@ public class StringUtils {
      * @param string The value to be checked
      * @return true if the string is null or empty or nothing but whitespaces.
      */
+    @Contract("null -> true")
     public static boolean IsNullOrBlank(String string) {
         return isNullOrEmpty(string) || string.isBlank();
     }

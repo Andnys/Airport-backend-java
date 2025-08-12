@@ -37,12 +37,11 @@ public class XmlParser {
         String gate = getString(element,"gate");
         String belt = getString(element,"belt");
 
-        String statusCode = "";
         ZonedDateTime statusTime = null;
         Character statusCodeChar = null;
         Element statusElement = (Element) element.getElementsByTagName("status").item(0);
         if(statusElement != null) {
-            statusCode = statusElement.getAttribute("code");
+            String statusCode = statusElement.getAttribute("code");
             statusTime = ZonedDateTime.parse(statusElement.getAttribute("time"));
             statusCodeChar = !StringUtils.isNullOrEmpty(statusCode) ? statusCode.charAt(0) : null;
         }
@@ -59,8 +58,9 @@ public class XmlParser {
     /*
     This returns a character, it should not be null.
      */
-    private static char getChar(Element element, String tagName){
+    private static char getChar(Element element, String tagName) throws AssertionError{
         String value = getString(element, tagName);
+        assert value != null;
         return value.charAt(0);
     }
 
@@ -77,6 +77,9 @@ public class XmlParser {
             return null;
         }
         String value = getString(element, tagName);
+        if(StringUtils.IsNullOrBlank(value)) {
+            return null;
+        }
         try {
             return ZonedDateTime.parse(value, DateTimeFormatter.ISO_DATE_TIME);
         }
@@ -90,8 +93,7 @@ public class XmlParser {
             return null;
         }
         try {
-            long id = Long.parseLong(element.getElementsByTagName(tagName).item(0).getTextContent());
-            return id;
+            return Long.parseLong(element.getElementsByTagName(tagName).item(0).getTextContent());
         } catch (NumberFormatException nfe) {
             return null;
         }

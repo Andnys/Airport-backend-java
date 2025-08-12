@@ -68,17 +68,16 @@ public class FlightFactory {
         AirportFactory airportFactory = new AirportFactory();
         String[] codes = viaAirportsString.split(",");
         ArrayList<AirportModel> viaAirports = new ArrayList<>();
-        for (int i = 0; i < codes.length; i++) {
+        for (String s : codes) {
             try {
-                String code = codes[i];
-                if(StringUtils.isNullOrEmpty(code)){
+                String code = s;
+                if (StringUtils.isNullOrEmpty(code)) {
                     continue;
                 }
                 AirportDto airportdto = AirportService.get(code);
-                AirportModel  airportModel = airportFactory.createModel(airportdto);
+                AirportModel airportModel = airportFactory.createModel(airportdto);
                 viaAirports.add(airportModel);
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 return viaAirports;
             }
         }
